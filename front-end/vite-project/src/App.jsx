@@ -90,11 +90,11 @@ function App() {
             )
           )
           setTaskData({
-          description: "",
-          createdDate: "",
-          status: false
-        });
-        setEditTaskTrue(false)
+            description: "",
+            createdDate: "",
+            status: false
+          });
+          setEditTaskTrue(false)
         }
       })
       .catch(err => console.log(err))
@@ -106,10 +106,19 @@ function App() {
     setFilterType(filterValue)
   }
 
+  const handleCancel = () => {
+    setTaskData({
+      description: "",
+      createdDate: "",
+      status: false
+    });
+    setEditTaskTrue(false);
+  }
+
   return (
-    <div style={{ width: "380px", backgroundColor: "#8bbbb9", padding: "4px 30px", borderRadius: "4px", margin: "30px 10px", height: "84vh" }}>
+    <div style={{ width: "380px", backgroundColor: "rgb(220 223 223)", padding: "4px 30px", borderRadius: "4px", margin: "30px 10px", height: "84vh" }}>
       <h3 style={{ textAlign: "center", color: "#2a4e53" }}>TODO APP</h3>
-      <AddTodo taskData={taskData} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} handleFilter={handleFilter} setFilterType={setFilterType} handleUpdate={handleUpdate} />
+      <AddTodo taskData={taskData} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} handleFilter={handleFilter} setFilterType={setFilterType} handleUpdate={handleUpdate} />
       <TodoList todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} handleDelete={handleDelete} handleEdit={handleEdit} />
     </div>
   )
