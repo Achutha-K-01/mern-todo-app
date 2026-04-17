@@ -2,6 +2,7 @@ import TodoList from "./components/todoList";
 import AddTodo from "./components/addTodo";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import TaskDashboard from "./components/TaskDashboard";
 
 function App() {
   const [taskData, setTaskData] = useState({
@@ -12,6 +13,10 @@ function App() {
 
   const [editTaskTrue, setEditTaskTrue] = useState(false);
   const [todoList, setTodoList] = useState([]);
+
+  let  totalTask = todoList.length;
+  let  completedTask = todoList.filter(task => task.status == true);
+  let  pendingTask = todoList.filter(task => task.status == false)
 
   const [filterType, setFilterType] = useState("All");
 
@@ -116,9 +121,10 @@ function App() {
   }
 
   return (
-    <div style={{ width: "380px", backgroundColor: "rgb(220 223 223)", padding: "4px 30px", borderRadius: "4px", margin: "30px 10px", height: "84vh" }}>
+    <div style={{ width: "380px", backgroundColor: "rgb(220 223 223)", padding: "10px 30px", borderRadius: "4px", margin: "30px 10px", minHeight: "80vh" }}>
       <h3 style={{ textAlign: "center", color: "#2a4e53" }}>TODO APP</h3>
       <AddTodo taskData={taskData} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} handleFilter={handleFilter} setFilterType={setFilterType} handleUpdate={handleUpdate} />
+      <TaskDashboard totalTask ={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length}/>
       <TodoList todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} handleDelete={handleDelete} handleEdit={handleEdit} />
     </div>
   )

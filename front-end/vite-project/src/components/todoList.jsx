@@ -29,7 +29,7 @@ function TodoList({ todoList, handleCheck, handleDelete, filterType, handleEdit 
                                     <p style={{ fontSize: "8px", fontWeight: 400, textDecorationLine: task.status ? "line-through" : "none", textDecorationThickness: "0.8px", textDecorationColor: "black" }}>{task.description}</p>
                                 </div>
                                 <div style={{ display: "flex", width: "28%", justifyContent: "space-around" }}>
-                                    <p style={{ fontSize: "8px", fontWeight: 500 }}>{task.createdDate}</p>
+                                    <p style={{ fontSize: "8px", fontWeight: 500 }}>{new Date(task.createdDate).toLocaleString("en-IN", {timeZone: "Asia/Kolkata"})}</p>
                                 </div>
                                 <div style={{ width: "3%" }}>
                                 </div>
