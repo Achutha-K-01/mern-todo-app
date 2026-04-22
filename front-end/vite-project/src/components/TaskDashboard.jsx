@@ -2,7 +2,7 @@ function TaskDashboard({ totalTask, completedTask, pendingTask }) {
     return (
         <>
             <div style={{ display: "flex", gap: "14px", margin: "16px 0px"}}>
-                <div style={{ padding: "8px", backgroundColor: "#34495E", color: "white",  flex: 1, borderRadius: "4px" }}>
+                <div style={{ padding: "8px", backgroundColor: "#15487a", color: "white",  flex: 1, borderRadius: "4px" }}>
                     <h2 style={{ textAlign: "center", margin: "0px", fontWeight: 500 }}>{totalTask}</h2>
                     <h6 style={{ textAlign: "center", margin: "0px", fontWeight: 500  }}>Total Task</h6>
                 </div>

@@ -121,8 +121,8 @@ function App() {
   }
 
   return (
-    <div style={{ width: "380px", backgroundColor: "rgb(220 223 223)", padding: "10px 30px", borderRadius: "4px", margin: "30px 10px", minHeight: "80vh" }}>
-      <h3 style={{ textAlign: "center", color: "#2a4e53" }}>TODO APP</h3>
+    <div style={{ width: "380px", backgroundColor: "#e7f3ff", padding: "10px 30px", borderRadius: "4px", margin: "30px 10px", minHeight: "80vh" }}>
+      <h3 style={{ textAlign: "center", color: "#15487a" }}>TODO APP</h3>
       <AddTodo taskData={taskData} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} handleFilter={handleFilter} setFilterType={setFilterType} handleUpdate={handleUpdate} />
       <TaskDashboard totalTask ={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length}/>
       <TodoList todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} handleDelete={handleDelete} handleEdit={handleEdit} />
