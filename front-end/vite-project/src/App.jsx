@@ -111,9 +111,7 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  const handleFilter = (e) => {
-    // console.log(e.target.value);
-    let filterValue = e.target.value;
+  const handleFilter = (filterValue) => {
     setFilterType(filterValue)
   }
 
@@ -150,10 +148,10 @@ function App() {
   }
 
   return (
-    <div style={{ width: "580px", backgroundColor: "#e6eef5", padding: "10px 30px", borderRadius: "4px", margin: "8px 8px", height: "88vh" }}>
+    <div style={{ width: "580px", backgroundColor: "rgb(4 78 152 / 8%)", padding: "10px 30px", borderRadius: "4px", margin: "8px 8px", height: "88vh" }}>
       <h3 style={{ textAlign: "center", color: "#0a3663", fontSize: "20px", marginTop: "6px" }}>ADTL - TODO APP</h3>
-      <AddTodo taskData={taskData} handlePriority={handlePriority} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} handleFilter={handleFilter} setFilterType={setFilterType} handleUpdate={handleUpdate} />
-      <TaskDashboard totalTask={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length} />
+      <AddTodo taskData={taskData} handlePriority={handlePriority} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} setFilterType={setFilterType} handleUpdate={handleUpdate} />
+      <TaskDashboard handleFilter={handleFilter} totalTask={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length} />
       <TodoList handleSort={handleSort} prioritySort={prioritySort} todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} handleDelete={handleDelete} handleEdit={handleEdit} />
     </div>
   )

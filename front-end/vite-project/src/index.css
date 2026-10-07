@@ -19,6 +19,31 @@ p{
   font-weight: 500 !important;
 }
 
+input:focus{
+  box-shadow: 0px 0px 2px 1px #99bee4 !important;  
+}
+
+#totalTaskCard:hover{
+  background-color: #05305c !important;
+  box-shadow: 0px 0px 4px 1px #49739c !important;  
+  cursor: pointer
+}
+
+#completedTaskCard:hover{
+  background-color: rgb(4, 102, 4) !important;
+  box-shadow: 0px 0px 4px 1px rgb(43, 116, 43) !important;
+  cursor: pointer
+}
+
+#pendingTaskCard:hover{
+  background-color: #e08a00 !important;
+  box-shadow: 0px 0px 4px 1px #925b01 !important;
+  cursor: pointer
+}
+
+.todoButton:hover{
+  box-shadow: 0px 0px 2px 1px #4185c9;
+}
 body{
   display: grid;
   justify-content: center;
