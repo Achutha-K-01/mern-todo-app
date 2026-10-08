@@ -1,4 +1,4 @@
-function TodoList({ todoList, handleCheck, handleDelete, filterType, handleEdit, prioritySort, handleSort }) {
+function TodoList({ todoList, handleCheck, confirmDelete, filterType, handleEdit, prioritySort, handleSort }) {
     const lowPriorityStyle = {
         fontSize: "8px",
         fontWeight: 500,
@@ -77,7 +77,7 @@ function TodoList({ todoList, handleCheck, handleDelete, filterType, handleEdit,
                                 </div>
                                 <div style={{ display: "flex", width: "10%", justifyContent: "space-evenly" }}>
                                     <button onClick={() => handleEdit(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-edit" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
-                                    <button onClick={() => handleDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
+                                    <button onClick={() => confirmDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
                                 </div>
                             </div>
                         ))
@@ -108,7 +108,7 @@ function TodoList({ todoList, handleCheck, handleDelete, filterType, handleEdit,
                                     </div>
                                     <div style={{ display: "flex", width: "10%", justifyContent: "space-evenly" }}>
                                         <button onClick={() => handleEdit(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-edit" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
-                                        <button onClick={() => handleDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
+                                        <button onClick={() => confirmDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
                                     </div>
                                 </div>
                             ))
@@ -139,7 +139,7 @@ function TodoList({ todoList, handleCheck, handleDelete, filterType, handleEdit,
                                     </div>
                                     <div style={{ display: "flex", width: "10%", justifyContent: "space-evenly" }}>
                                         <button onClick={() => handleEdit(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-edit" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
-                                        <button onClick={() => handleDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
+                                        <button onClick={() => confirmDelete(task._id)} style={{ border: "none", backgroundColor: "white" }}><i className="fa fa-trash-o" style={{ color: "#15487a", fontSize: "10px" }}></i></button>
                                     </div>
                                 </div>
                             ))

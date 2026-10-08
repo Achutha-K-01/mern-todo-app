@@ -3,6 +3,7 @@ import AddTodo from "./components/addTodo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import TaskDashboard from "./components/TaskDashboard";
+import PopupModal from "./components/popupModal";
 
 function App() {
   const [taskData, setTaskData] = useState({
@@ -16,6 +17,12 @@ function App() {
 
   const [editTaskTrue, setEditTaskTrue] = useState(false);
   const [todoList, setTodoList] = useState([]);
+  const [popupModal, setPopupModal] = useState({
+    showHide: false,
+    status: "",
+    message: "",
+    id: ""
+  });
 
   let totalTask = todoList.length;
   let completedTask = todoList.filter(task => task.status == true);
@@ -33,15 +40,19 @@ function App() {
     axios.post("http://localhost:3000/api/tasks", taskData)
       .then(res => {
         setTodoList([...todoList, res.data.data]);
+        setPopupModal({showHide: true, status: "success", message: "Task Added Successfully"});
         console.log(res.data.data);
         setTaskData({
           description: "",
           createdDate: "",
           status: false,
           priority: ""
-        })
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        setPopupModal({showHide: true, status: "warning", message: "Task & Priority shold not be empty"});
+      })
   }
 
   //todoList Component States
@@ -69,16 +80,21 @@ function App() {
   }
 
   const handleDelete = (id) => {
-    console.log(id)
+    console.log(id);
     axios.delete(`http://localhost:3000/api/tasks/${id}`)
       .then(res => {
         console.log(res)
         const updatedUserList = todoList.filter(task => task._id !== id);
         setTodoList(updatedUserList);
+        setPopupModal({showHide: true, status: "delete", message: "Task Deleted Successfully"});
       })
       .catch(err => {
         console.log(err)
       })
+  }
+
+  const confirmDelete = (id) => {
+    setPopupModal({showHide: true, id: id, status: "confirm", message: "Do you want to delete the task?"});
   }
 
   const handleEdit = (id) => {
@@ -105,10 +121,14 @@ function App() {
             status: false,
             priority: ""
           });
+          setPopupModal({showHide: true, status: "success", message: "Task Updated Successfully"});
           setEditTaskTrue(false)
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        setPopupModal({showHide: true, status: "warning", message: "Not able to update"});
+      })
   }
 
   const handleFilter = (filterValue) => {
@@ -150,9 +170,10 @@ function App() {
   return (
     <div style={{ width: "580px", backgroundColor: "rgb(4 78 152 / 8%)", padding: "10px 30px", borderRadius: "4px", margin: "8px 8px", height: "88vh" }}>
       <h3 style={{ textAlign: "center", color: "#0a3663", fontSize: "20px", marginTop: "6px" }}>ADTL - TODO APP</h3>
+      <PopupModal handleDelete={handleDelete} setPopupModal={setPopupModal} popupModal={popupModal}/>
       <AddTodo taskData={taskData} handlePriority={handlePriority} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} setFilterType={setFilterType} handleUpdate={handleUpdate} />
       <TaskDashboard handleFilter={handleFilter} totalTask={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length} />
-      <TodoList handleSort={handleSort} prioritySort={prioritySort} todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <TodoList handleSort={handleSort} prioritySort={prioritySort} todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} confirmDelete={confirmDelete} handleEdit={handleEdit} />
     </div>
   )
 }
