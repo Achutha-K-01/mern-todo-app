@@ -1,4 +1,4 @@
-function AddTodo({taskData, handleChange, handleSubmit, handleFilter, handlePriority, handleUpdate, editTaskTrue, handleCancel}){
+function AddTodo({taskData, handleChange, handleSubmit, handlePriority, handleUpdate, editTaskTrue, handleCancel}){
 
     return(
         <div style={{display: "flex", justifyContent: "space-between"}}>

@@ -17,11 +17,13 @@ function App() {
 
   const [editTaskTrue, setEditTaskTrue] = useState(false);
   const [todoList, setTodoList] = useState([]);
+
   const [popupModal, setPopupModal] = useState({
     showHide: false,
     status: "",
     message: "",
-    id: ""
+    id: "",
+    taskStatus: false
   });
 
   let totalTask = todoList.length;
@@ -64,6 +66,7 @@ function App() {
   }, []);
 
   const handleCheck = (id, status) => {
+    
     axios.patch(`http://localhost:3000/api/tasks/${id}`, { status: !status })
       .then(res => {
         console.log(res)
@@ -74,9 +77,25 @@ function App() {
               task._id == id ? res.data.data : task
             )
           )
+          if(res.data.data.status){
+            setPopupModal({showHide: true, status: "success", message: "Congratulations, Task Completed Successfully"});
+          }
+          else{
+            setPopupModal({showHide: true, status: "success", message: "Task marked as incompleted"});
+          }
         }
       })
       .catch(err => console.log(err))
+  }
+
+  const confirmCheck = (id, status) => {
+    if(!status){
+      setPopupModal({showHide: true, status: "confirmTask",id: id, taskStatus: status, message: "Task is completed?"});
+    }
+    else{
+      setPopupModal({showHide: true, status: "confirmTask",id: id, taskStatus: status, message: "Still Task is not completed?"});
+    }
+    
   }
 
   const handleDelete = (id) => {
@@ -94,7 +113,7 @@ function App() {
   }
 
   const confirmDelete = (id) => {
-    setPopupModal({showHide: true, id: id, status: "confirm", message: "Do you want to delete the task?"});
+    setPopupModal({showHide: true, id: id, status: "confirmDelete", message: "Do you want to delete the task?"});
   }
 
   const handleEdit = (id) => {
@@ -170,10 +189,10 @@ function App() {
   return (
     <div style={{ width: "580px", backgroundColor: "rgb(4 78 152 / 8%)", padding: "10px 30px", borderRadius: "4px", margin: "8px 8px", height: "88vh" }}>
       <h3 style={{ textAlign: "center", color: "#0a3663", fontSize: "20px", marginTop: "6px" }}>ADTL - TODO APP</h3>
-      <PopupModal handleDelete={handleDelete} setPopupModal={setPopupModal} popupModal={popupModal}/>
+      <PopupModal handleCheck={handleCheck} handleDelete={handleDelete} setPopupModal={setPopupModal} popupModal={popupModal}/>
       <AddTodo taskData={taskData} handlePriority={handlePriority} handleCancel={handleCancel} editTaskTrue={editTaskTrue} setTaskData={setTaskData} handleChange={handleChange} handleSubmit={handleSubmit} filterType={filterType} setFilterType={setFilterType} handleUpdate={handleUpdate} />
       <TaskDashboard handleFilter={handleFilter} totalTask={totalTask} completedTask={completedTask.length} pendingTask={pendingTask.length} />
-      <TodoList handleSort={handleSort} prioritySort={prioritySort} todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} handleCheck={handleCheck} filterType={filterType} confirmDelete={confirmDelete} handleEdit={handleEdit} />
+      <TodoList handleSort={handleSort} prioritySort={prioritySort} todoList={todoList} setEditTaskTrue={setEditTaskTrue} setTodoList={setTodoList} confirmCheck={confirmCheck} filterType={filterType} confirmDelete={confirmDelete} handleEdit={handleEdit} />
     </div>
   )
 }

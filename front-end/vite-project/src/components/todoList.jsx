@@ -1,4 +1,4 @@
-function TodoList({ todoList, handleCheck, confirmDelete, filterType, handleEdit, prioritySort, handleSort }) {
+function TodoList({ todoList, confirmCheck, confirmDelete, filterType, handleEdit, prioritySort, handleSort }) {
     const lowPriorityStyle = {
         fontSize: "8px",
         fontWeight: 500,
@@ -54,7 +54,7 @@ function TodoList({ todoList, handleCheck, confirmDelete, filterType, handleEdit
                         todoList.map((task, idx) => (
                             <div className="taskList" key={idx} style={{ display: "flex", alignItems: "center", margin: "6px 2px", padding: "2px 0px", backgroundColor: "white", boxShadow: "0px 0px 2px 1px #c9d9e9", borderRadius: "2px" }}>
                                 <div style={{ width: "8%" }}>
-                                    <input style={{ margin: "0px 10px", height: "8px" }} type="checkbox" checked={task.status} onChange={() => handleCheck(task._id, task.status)} />
+                                    <input style={{ margin: "0px 10px", height: "8px", cursor: "pointer" }} type="checkbox" checked={task.status} onChange={() => confirmCheck(task._id, task.status)} />
                                 </div>
                                 <div style={{ display: "flex", width: "48%", justifyContent: "space-around" }}>
                                     <p style={{ fontSize: "8px", fontWeight: 400, textDecorationLine: task.status ? "line-through" : "none", textDecorationThickness: "0.8px", textDecorationColor: "black" }}>{task.description}</p>
@@ -85,7 +85,7 @@ function TodoList({ todoList, handleCheck, confirmDelete, filterType, handleEdit
                             todoList.filter((task) => task.status == true).map((task, idx) => (
                                 <div className="taskList" key={idx} style={{ display: "flex", alignItems: "center", margin: "6px 2px", padding: "2px 0px", backgroundColor: "white", boxShadow: "0px 0px 2px 1px #c9d9e9", borderRadius: "2px" }}>
                                     <div style={{ width: "8%" }}>
-                                        <input style={{ margin: "0px 10px", height: "8px" }} type="checkbox" checked={task.status} onChange={() => handleCheck(task._id, task.status)} />
+                                        <input style={{ margin: "0px 10px", height: "8px",cursor: "pointer" }} type="checkbox" checked={task.status} onChange={() => confirmCheck(task._id, task.status)} />
                                     </div>
                                     <div style={{ display: "flex", width: "48%", justifyContent: "space-around" }}>
                                         <p style={{ fontSize: "8px", fontWeight: 400, textDecorationLine: task.status ? "line-through" : "none", textDecorationThickness: "0.8px", textDecorationColor: "black" }}>{task.description}</p>
@@ -116,7 +116,7 @@ function TodoList({ todoList, handleCheck, confirmDelete, filterType, handleEdit
                             todoList.filter((task) => task.status == false).map((task, idx) => (
                                 <div className="taskList" key={idx} style={{ display: "flex", alignItems: "center", margin: "6px 2px", padding: "2px 0px", backgroundColor: "white", boxShadow: "0px 0px 2px 1px #c9d9e9", borderRadius: "2px" }}>
                                     <div style={{ width: "8%" }}>
-                                        <input style={{ margin: "0px 10px", height: "8px" }} type="checkbox" checked={task.status} onChange={() => handleCheck(task._id, task.status)} />
+                                        <input style={{ margin: "0px 10px", height: "8px",cursor: "pointer" }} type="checkbox" checked={task.status} onChange={() => confirmCheck(task._id, task.status)} />
                                     </div>
                                     <div style={{ display: "flex", width: "48%", justifyContent: "space-around" }}>
                                         <p style={{ fontSize: "8px", fontWeight: 400, textDecorationLine: task.status ? "line-through" : "none", textDecorationThickness: "0.8px", textDecorationColor: "black" }}>{task.description}</p>
